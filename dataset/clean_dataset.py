@@ -1,4 +1,4 @@
-# clean_text.py
+# clean_dataset.py
 
 import nltk
 from nltk.tokenize import word_tokenize
