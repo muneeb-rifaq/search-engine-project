@@ -1,6 +1,5 @@
 # lexicon.py
-
-from clean_dataset import clean_dataset
+from dataset.clean_dataset import clean_text  # Fix the import to correctly use the function
 
 def create_lexicon(df):
     """Creates a lexicon that maps each word to a unique wordID."""
@@ -10,7 +9,7 @@ def create_lexicon(df):
     # Iterate through each document to populate the lexicon
     for index, row in df.iterrows():
         title = row['title']
-        words = clean_text(title)
+        words = clean_text(title)  # Use clean_text for cleaning the title text
         
         for word in words:
             if word not in lexicon:
