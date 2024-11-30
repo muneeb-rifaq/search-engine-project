@@ -1,4 +1,3 @@
-# inverted_indexing.py
 def create_inverted_index(forward_index):
     """Creates the inverted index from the forward index."""
     inverted_index = {}
