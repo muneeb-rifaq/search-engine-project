@@ -35,7 +35,8 @@ def process_chunks(input_file, chunk_size=10000):
     return lexicon
 
 # Example usage
-input_file = r"C:\Users\hp\Documents\GitHub\search-engine-project\cleaned_dataset.csv"  # Adjust to the correct path
+input_file = r"C:\Users\AT\Documents\GitHub\search-engine-project\cleaned_dataset.csv"  # Adjust to the correct path
 lexicon = process_chunks(input_file)
 
-
+# Print the lexicon
+print(lexicon)
