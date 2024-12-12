@@ -1,0 +1,633 @@
+
+Software Requirements Specification
+for
+<OFFICE MANAGEMENT SYSTEM>
+Version 1.1 approved
+Prepared by <Muneeb Rifaq, Talha Shafat, and Hassan Noor >
+<SE 14-A Group 3 NUST  >
+<DATE: 17/11/2024 >
+ 
+Table of Contents
+1.	Introduction	1
+1.1	Purpose	1
+1.2	Document Conventions	1
+1.3	Intended Audience and Reading Suggestions	1
+1.4	Product Scope	2
+1.5	References	2
+2.	Overall Description	3
+2.1	Product Perspective	3
+2.2	Product Functions	4
+2.3	User Classes and Characteristics	6
+2.4	Operating Environment	9
+2.5	Design and Implementation Constraints	10
+2.6	User Documentation	12
+2.7	Assumptions and Dependencies	13
+3.	External Interface Requirements	14
+3.1	User Interfaces	14
+2.	Sign Up page	15
+3.2	Hardware Interfaces	20
+3.3	Software Interfaces	21
+3.4	Communications Interfaces	22
+4.	System Features	23
+5.	Other Nonfunctional Requirements	25
+5.1	Performance Requirements	25
+5.2	Safety Requirements	25
+5.3	Security Requirements	26
+5.4	Software Quality Attributes	26
+5.5	Business Rules	27
+6.	Other Requirements	28
+ 
+
+
+Revision History
+Name	Date	Reason For Changes	Version
+Event Mail Management	11/11/24	High Complexity and small Real world Application	1.0
+Office management System	17/11/24	Adjusted for Design Simplicity and increased generalization	1.1
+
+ 
+1.	Introduction
+1.1	Purpose
+The Office Management System Version 1.1 is a sophisticated tool designed for use by the CEO or senior executives of mid-to-large-scale organizations. It enables the CEO to manage the company by interacting with the company’s database in the following ways: receive information on employees, managers, departments, projects, clients, etc. This software system enhances transparency as it provides executives with real-time insights into employee performance and the overall status of the organization.
+This document defines the requirements for the first release of the Office Management System. It covers all core functionalities necessary for effective management and auditability in a corporate environment.
+1.2	Document Conventions
+The following conventions are followed in this document:
+•	The document uses the font style of Times New Roman for all the text.
+•	The size is 12pt for body text, 12pt for sub-headings, 14pt for topic headings, 18pt for section headings, and 32pt for document headings.
+•	Keywords in body text, starting words of body text, sub-headings, section headings, and document headings are all highlighted in bold and the topic headings are highlighted in bold and italic.
+•	Requirements are numbered hierarchically (e.g., REQ-1.1, REQ-1.2) to indicate dependencies and allow traceability, and points with further subpoints are also numbered.
+•	Higher-level requirements are inherited by detailed requirements unless explicitly overridden. Every requirement is assigned a priority level (High, Medium, Low) based on its significance.
+•	Acronyms and technical terms used in the document are defined in Appendix A: Glossary.
+1.3	Intended Audience and Reading Suggestions
+This Software Requirements Specification (SRS) document is useful to the following:
+1.	Developers: To understand the system's functional and non-functional requirements.
+2.	Project Managers: To monitor the deadlines, scope, milestones, and constraints of the project.
+3.	Testers: To verify and validate the system by checking if it fulfills the specifications and catch errors during quality assurance.
+4.	Marketing Staff: To gain insight into the system's capabilities for promoting and aligning it with market demands.
+5.	End Users (e.g., CEOs, Managers, Employees): To understand how the system supports their specific roles and how they can interact with its features.
+6.	Documentation Writers: To draft user manuals, installation guides, and training materials based on the defined requirements.
+
+The SRS document is segmented into the following sections:
+1.	Introduction: Overview of the system's purpose, scope, and references
+2.	Overall Description: Explanation of the product's context, functions, and intended operating environment
+3.	External Interface Requirements: Details about user, hardware, software, and communication interfaces
+4.	System Features: Description of major system functionalities, including their priorities and specifications
+5.	Other Non-functional Requirements: Elaborates performance, safety, security, and business rules
+6.	Other Requirements: Includes legal, database, and internationalization requirements.
+7.	Appendices: Glossary, analysis models (e.g., diagrams), and a TBD list for pending specifications
+
+The following reading sequence is suggested as per the reader type:
+1.	Overview (Sections 1.1–1.4): These sections will be helpful to developers, project managers, and testers to understand the system's objectives and scope.
+2.	Product Description (Section 2): This section will be useful for developers and testers for a high-level understanding of the system architecture and user characteristics.
+3.	System Features (Section 4): This section will be helpful to developers and testers for implementation guidance and identification of testable requirements respectively.
+4.	External Interfaces (Section 3): This section will be useful for developers to implement integrations and for testers to verify interface functionality.
+5.	Non-functional Requirements (Section 5): This section is relevant for both project managers and developers to ensure adherence to performance, safety, and quality standards.
+6.	Appendices: This section is useful for all readers to clarify terms, analyze models, and address pending decisions.
+1.4	Product Scope
+The Office Management System (OMS) is a comprehensive software solution designed to streamline and optimize organizational management processes. Its primary purpose is to centralize business operations. It provides tools for efficient management of employees, projects, departments, clients, and branch offices. By automating routine tasks and maintaining a structured relational database, the system enhances decision-making and reduces administrative overhead.
+This software system enhances transparency as it allows real-time access to employee performance, project statuses, and departmental activities. Furthermore, this system is efficient as it also allows automated workflows for managing records and relationships between organizational entities. It is also scalable as it supports businesses of different sizes, from medium enterprises to global corporations. Moreover, it provides accountability by maintaining comprehensive audit trails, ensuring traceability of all actions performed.
+The OMS aims to provide CEOs and managers with actionable insights to drive strategic decisions, simplify resource allocation and organizational oversight, support different operations, like Create, Read, Update, Delete, across interconnected datasets, and ensure compliance with corporate data protocols and security standards.
+The OMS aligns with corporate strategies by fostering operational efficiency, promoting informed decision-making, and supporting scalable growth. Its focus on automation and data centralization directly contributes to reducing costs and improving productivity.
+1.5	References
+Office Management Report, available on Scribd: https://www.scribd.com/presentation/698816828/Office-Management-Report.
+2.	Overall Description
+2.1	Product Perspective
+The Office Management System (OMS) is a new, standalone product designed to centralize and automate the management processes of medium to large-scale organizations. It replaces traditional methods and fragmented software solutions that often fail to scale with organizational growth, resulting in inefficiencies and data silos. Developed to address challenges faced by CEOs and managers, OMS integrates essential management functions - such as tracking employees, projects, departments, and branch operations - into a single platform. By streamlining operations and enhancing transparency, accountability, and efficiency, OMS provides a modern solution tailored to meet the demands of growing organizations.
+Although OMS is standalone, it has been designed with flexibility to interface with other business applications, such as:
+•	Financial Management Software: To share data on budgets and salaries.
+•	HR Systems: For employee onboarding and records synchronization.
+•	Project Management Tools: For enhanced collaboration and task tracking.
+Key Interfaces:
+•	Database Layer: The MySQL database acts as the backbone, storing all organizational data.
+•	Graphical User Interface (GUI): Provides an intuitive user experience for interacting with system features.
+•	External Systems: APIs can be developed for integration with third-party tools as needed.
+System Diagram:
+Below is a conceptual representation of the system:
+ 
+This design ensures modularity, scalability, and seamless data flow between components, facilitating efficient office management.
+2.2	Product Functions
+The Office Management System (OMS) provides the following major functions at a high level:
+Login System: Secure login with authentication via username and password.
+Role-based Access Control: Different levels of access based on user roles (Admin, Manager, Employee).
+User Management: Manage system users by creating, authenticating, and maintaining roles and permissions to ensure secure access to different features and data based on user responsibilities.
+Employee Management: Add, view, update, and remove employee records, including personal details, roles, salaries, and project assignments.
+Project Management: Create, track, and manage projects, including assigning managers, employees, deadlines, and budgets.
+Department and Branch Management: Organize and manage departments and branches, maintaining their relationships with employees, clients, and projects.
+Client Management: Store and manage client information, including contact details, project associations, and history.
+Audit Trails and History Tracking: Maintain a comprehensive log of all actions performed within the system, including timestamps, user information, and affected data.
+Data Relationships and Validation: Enforce relational integrity by validating dependencies (e.g., ensuring employees assigned to a project exist in the database).
+Reporting and Insights: Generate real-time reports on employee performance, project status, and departmental activities to support decision-making.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Object Class Diagram
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Top-Level Data Flow Diagram
+A top-level data flow diagram (DFD) illustrates how major functions interact with each other and external components:
+ 
+This diagram shows:
+•	User interactions are processed through the Application Logic, which handles data flow.
+•	The Database stores and retrieves organizational information.
+•	Optional External Systems can be connected for extended functionalities, such as third-party integrations or cloud services.
+2.3	User Classes and Characteristics
+The following section outlines the anticipated user classes and their key characteristics:
+
+1. The CEO has the highest level of access within the system. They can access all system features and data to oversee company performance metrics and confidential reports, make high-level management decisions, and manage sensitive tasks such as adding or removing clients, viewing and approving changes to confidential data. They need to have medium-level understanding of the system, sufficient to navigate and modify high-level organizational data. Although they use the system occasionally, the security should be very high, due to access to sensitive company information.
+
+2. Administrators are responsible for maintaining the system's overall functionality and integrity. 
+They almost have full access to system settings, user management, and database operations, except confidential user data such as user credentials. Thus, they must have be proficient is using OMS and must have advanced knowledge of database systems and application management. They manage system configurations, user roles, system performance backups, and database control. However, their access excludes sensitive user information, such as passwords or confidential user data. As they use OMS daily, the security must be high as they handle core system configurations.
+
+3. Department Heads only have access to their department’s data. They have must have at least moderate understanding OMS, sufficient to manage and oversee all activities within their assigned department, including employee details, project updates, and managerial tasks. They are responsible for ensuring departmental efficiency and alignment with company goals. As they use OMS daily, security must be high due to the handling of departmental data.
+
+4. Branch Heads have access only of their assigned branch, including all associated departments, employees, clients, and projects. They must have at least moderate level of expertise for managing complex branch operations including managing branch-wide projects, departments, and employees and monitoring client interactions and branch performance. As they regularly use OMS, security should be very high, as they handle cross-departmental and branch-level information.
+
+5. Managers have moderate access of overseeing specific projects or departmental tasks. They must have at least moderate level of expertise in using OMS to track and update project progress. They coordinate team efforts and ensure project timelines and deliverables are met. As they  use OMS daily, the security should be medium, due to access to project-specific data.
+
+6. Employees have limited access, restricted to their personal data and project-related information. They only require basic familiarity with the system interface to view their personal information (e.g., salaries, roles, assigned projects) or accessing project-related updates. Since they occasionally us OMS, security should be low, as employees’ access is restricted to non-sensitive data.
+
+7. Clients are external users with read-only access to specific project details related to their commissioned work. Their interaction is limited to tracking progress and updates. Although they rarely use OMS, the security requirements are variable as it depends on the client's importance and project sensitivity.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The following are the Use Case diagrams:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2.4	Operating Environment
+The Office Management System (OMS) is designed to operate in a standardized and scalable environment, ensuring compatibility with commonly used hardware and software configurations. The system's operational environment is outlined below:
+Hardware Platform
+•	Processor: Minimum Intel Core i5 or equivalent.
+•	Memory (RAM): 8 GB minimum, 16 GB recommended for optimal performance.
+•	Storage: At least 500 GB of available disk space.
+•	Network: Reliable internet connection for multi-user access and potential integration with cloud services.
+Operating System
+•	Windows: Windows 10 or higher (64-bit versions).
+•	Linux: Ubuntu 20.04 LTS or higher.
+•	macOS: macOS Catalina or higher (optional support based on user requirements).
+Software Dependencies
+•	Database Management System: MySQL 8.0 or higher for backend database operations.
+•	Programming Environment: Java 11 or C++ for application logic development.
+•	Web Server (if applicable): Apache Tomcat for Java-based deployments or Nginx for HTTP server requirements.
+•	IDE Support: Visual Studio Code, IntelliJ IDEA, or Eclipse for development and debugging.
+Other Software Components
+•	Client-Side Software:
+o	Modern web browsers (e.g., Google Chrome, Mozilla Firefox) for accessing web-based interfaces.
+o	Optional GUI-based desktop client for enhanced functionality.
+Security Software:
+o	Compatible with industry-standard security protocols for secure data storage and communication (e.g., HTTPS, SSL/TLS encryption).
+o	Integration with third-party authentication tools for two-factor authentication, if required.
+Compatibility and Coexistence
+•	The OMS must coexist peacefully with other enterprise tools, such as financial management software, email systems, and project management platforms. Integration capabilities via APIs are supported for interoperability.
+•	It should not interfere with existing system processes, ensuring low resource usage and efficient performance on shared servers.
+This environment ensures flexibility, scalability, and reliability for various organizational setups while maintaining a secure and user-friendly experience.
+2.5	Design and Implementation Constraints
+The development of the Office Management System (OMS) is subject to several constraints that limit the options available to developers. These constraints ensure compliance with corporate policies, technical requirements, and project objectives:
+1. Corporate and Regulatory Policies
+•	The system must adhere to data protection regulations, such as GDPR or CCPA, to ensure user privacy and secure data handling.
+•	Strict role-based access control (RBAC) must be implemented to prevent unauthorized data access.
+•	Comprehensive logging must be maintained for auditing purposes, in line with organizational compliance policies.
+2. Hardware Limitations
+•	The system must function on hardware with a minimum of 8 GB RAM but should be optimized for 16 GB or higher for better performance.
+•	Database size must be optimized to function efficiently within a 500 GB storage environment, accommodating future scalability.
+•	The application must perform smoothly on machines with at least an Intel Core i5 processor or equivalent.
+3. Interfaces to Other Applications
+•	Developers must account for integration with financial management systems, email services, and project management tools via APIs.
+•	The system is restricted to MySQL 8.0 for backend operations, which limits database-related technology options.
+4. Specific Technologies, Tools, and Databases
+The core application must be developed in Java 11 or C++, as dictated by project requirements.
+•	MySQL 8.0 is the mandated database management system.
+•	Visual Studio Code, IntelliJ IDEA, or Eclipse must be used for coding and debugging.
+5. Parallel Operations
+•	The system must support up to 10,000 concurrent users, requiring careful optimization of database queries and server operations.
+6. Communications Protocols
+•	The system must use HTTPS and SSL/TLS protocols to ensure secure communication between users and the application.
+•	RESTful APIs are required for integration with external systems, limiting the use of alternative communication protocols.
+7. Security Considerations
+•	Two-factor authentication must be implemented for high-security roles (e.g., Admin, CEO).
+•	All sensitive data must be stored and transmitted using encryption standards such as AES-256.
+8. Design Conventions and Programming Standards
+•	The interface must comply with standard usability principles, ensuring accessibility for users with varying technical expertise.
+•	Developers must follow industry best practices for coding, such as adhering to the Java Code Conventions or C++ Style Guidelines.
+•	customer’s IT department will maintain the delivered system, necessitating detailed documentation and adherence to maintainable design principles.
+These constraints establish clear guidelines for the development process, ensuring that the OMS is robust, compliant, and aligned with organizational requirements.
+2.6	User Documentation
+The User Manual for the Office Management System (OMS) will be the primary documentation component delivered along with the software. This manual will provide users with the necessary information to effectively navigate and utilize the system.
+Contents of the User Manual
+•	System Overview: It will contain introduction to OMS, its purpose, its key features, and benefits
+•	Getting Started: It will include installation and setup instructions and logging in and creating user accounts
+•	Navigating the System: It will contain overview of the user interface. main dashboard, and explanation of navigation menus and available sections
+•	Performing Key Tasks: It will give Step-by-step instructions for different operations like adding, editing, and removing employees, clients, and project; managing departments and branches; and generating reports and reviewing project progress
+•	Role-Specific Instructions: It will provide detailed guidance for different user roles (CEO, Admin, Dept Head, etc.), including permissions and access levels
+•	Troubleshooting: It will provide common issues and their solutions, and how to contact support if further assistance is needed
+•	Security and Privacy Guidelines: It will provide instructions on how to maintain secure access and protect sensitive data
+Delivery Formats
+•	The user manual will be provided in a PDF format, making it easy to download and access offline.
+•	An optional printed version of the user manual may be provided for clients or companies that prefer a physical copy.
+Documentation Standards
+•	Clear, concise language will be used to ensure accessibility for all users, including those with minimal technical knowledge.
+•	The manual will follow standard document formatting with headings, subheadings, and bullet points for easy navigation. Key terms will be highlighted, and examples will be provided where necessary.
+This user manual will provide all necessary guidance for users to get the most out of the OMS, ensuring a seamless experience with the system.
+2.7	Assumptions and Dependencies
+1. Assumptions
+Third-Party Components: It is assumed that MySQL 8.0 or higher will be available and fully compatible for use as the database management system. If a different database system is used, significant modifications may be required to ensure compatibility with the system architecture.
+Operating System Compatibility: The system is assumed to be deployed on Windows 10 or higher, Ubuntu 20.04 or higher, or macOS Catalina or higher. Compatibility with older versions or different operating systems (e.g., outdated Linux distributions) may affect system performance and require additional support.
+Network Infrastructure: The system assumes stable network infrastructure for multi-user access. If there are bandwidth or network reliability issues, it could impact the performance, especially for remote access or cloud-based functionalities.
+User Hardware Requirements: It is assumed that users will have devices that meet the minimum hardware specifications: at least 8 GB of RAM and a 500 GB hard drive. If users are operating on hardware that doesn't meet these requirements, the system's performance may degrade.
+User Knowledge and Experience: The system assumes that users, especially administrators and managers, have a basic understanding of office management software and the business processes they are handling. If the users lack this knowledge, additional training or documentation may be required.
+Compliance with Security Standards: It is assumed that the organization’s security requirements (e.g., two-factor authentication, data encryption) will be implemented in line with industry standards such as GDPR, CCPA, and others. If compliance requirements change or are not met, the system’s security architecture may need to be revised.
+2. Dependencies
+External Libraries and APIs: The OMS depends on third-party libraries or APIs for certain functionalities, such as for email integration, authentication (e.g., OAuth), and possibly cloud storage. If these third-party services or components change or become unavailable, the functionality of OMS may be impacted, requiring new integrations or updates.
+Cloud Infrastructure (if applicable): If the system is integrated with cloud-based services (e.g., AWS, Azure), the project depends on the availability and stability of these platforms. Any disruption in these services or changes to pricing, capacity, or features could affect the overall system performance or budget.
+Browser and Device Compatibility: The OMS is expected to function on modern web browsers (e.g., Google Chrome, Mozilla Firefox) and mobile devices. If users choose unsupported browsers or older versions, functionality could be limited, and additional testing or development may be necessary.
+Database Integration with Other Systems: The project assumes that any necessary integrations with other enterprise systems (e.g., financial management or HR tools) will be feasible, and the necessary data exchange protocols (e.g., RESTful APIs) will be available. If these integrations fail or are not possible, it could limit the full functionality of the OMS.
+Deployment Environment: It is assumed that the software will be deployed on either on-premise infrastructure or a cloud service provided by the organization. If the deployment environment changes (e.g., switching from on-premise to cloud or vice versa), there may be significant implications for configuration, security, and performance.
+Maintenance and Support: The project assumes that the organization’s IT team will be responsible for ongoing maintenance and support after delivery. If the support structure changes, such as a lack of in-house expertise, it could affect the system’s reliability and lead to increased downtime or slower response times to issues.
+These assumptions and dependencies must be closely monitored throughout the project lifecycle to ensure that the system meets all requirements and remains functional within the anticipated constraints. If any of these assumptions change or become invalid, it could necessitate modifications to the project scope, timeline, or functionality.
+3.	External Interface Requirements
+3.1	User Interfaces
+1.	Login Page
+•	A screen will show up asking user to enter his/her credentials.
+•	The screen will display two text boxes: Username text box for entering the username and Password text box for entering the password, with input hidden (displayed as ****) for security.
+•	Logo Placeholder i.e. will contain the company logo at the top of the page
+•	The screen will contain two buttons: Sign Up button which Navigates the user to the registration (Sign Up) page and Log In button which validates the provided login credentials
+•	When the Log In button is pressed, the system checks if both text fields are filled. If a field is empty, its content will display "PLEASE FILL IN THIS FIELD" in red text.
+•	When a user clicks inside a text field containing the error message, the field will be cleared automatically for new input.
+•	The system will search the file accounts.txt for a record matching the provided username and password. If a match is found, the user is redirected to the Main Menu. If no match is found, both fields will display "MATCHING DATA NOT PRESENT" in red text.
+•	If a user clicks inside a text field displaying an error message (e.g., "MATCHING DATA NOT PRESENT"), the content will be cleared automatically for new input.
+
+ 
+2.	Sign Up page
+•	The page will contain two primary input fields: Username field for the user to enter their desired username and Password field, where input will be hidden (e.g., ****) for security.
+•	Logo Placeholder i.e. will contain the company logo at the top of the page
+•	Two buttons will be available for navigation: FINISH button which finalizes the account creation process and RETURN TO LOGIN button which redirects the user back to the login page.
+•	When the RETURN TO LOGIN button is clicked, the program will navigate the user to the Login page, discarding unsaved changes on the Sign-Up page.
+•	When the FINISH button is pressed, the system will verify that neither the Account Name nor the Password field is empty. If a field is empty, the placeholder text in the empty field will display ‘PLEASE FILL IN THIS TABLE’ in red letters to prompt user action. If the user clicks back into the field with the error, the content of the field will be cleared for fresh input.
+•	If the input fields are filled, the program will check the file "accounts.txt" for an existing account with the same name. If a matching account is found, the Account Name field will display ‘ACCOUNT BY THIS NAME ALREADY EXISTS’ in red to alert the user. Clicking on the field again will clear the message for re-entry.
+•	If no matching account is found, the program will save the new Account Name and Password to "accounts.txt" and display a success message: ‘Account Created Successfully’.
+ 
+
+3.	Main Menu
+•	At the top of the page, a large picture field will display a company logo, motivational poster, or any relevant visual content to enhance user engagement and branding.
+•	Below the banner, large interactive boxes will be displayed in a grid or stacked layout, starting from the middle of the page. Each box will include a picture field for a representative image or icon, a short description summarizing the section's purpose, and a hyperlink or button to navigate to the corresponding section's page.
+•	The boxes represent key functional areas of the application labelled as:
+	EMPLOYEE
+	MANAGER
+	PROJECT
+	PROJECT_EMPLOYEE
+	DEPARTMENT
+	DEPT_HEAD
+	BRANCH
+	BRANCH_HEAD
+	CLIENTS
+	CEO
+	HISTORY
+•	Clicking on a box's link or button will navigate the user to the corresponding detailed page and ensure a smooth transition while preserving the session state for a consistent user experience.
+•	On the left side of the page, a scrollable list will display extra features or miscellaneous options. Examples might include settings, help, user profile, or any future functionalities. This section ensures scalability and accommodates additional features without cluttering the main interface.
+4.	Individual Box Table CONTENTS
+•	The page will display multiple rows of Large Box Entities. Each row will contain up to 4 Boxes and will continue vertically down the page, accommodating as many entries as required.
+•	If the list of Boxes exceeds the visible space of the page, a scrollbar will be added for users to scroll and view additional rows.
+•	Each Box will have the following information fields:
+	Picture: A placeholder or an image representing the individual or entity (such as an employee photo or company logo).
+	Name: Display the name of the entity (e.g., employee's name, project name, etc.).
+	Experience: A brief description of the entity's experience or role within the organization (e.g., years of service or project details).
+	Phone Number: The entity's contact number.
+	Email: The entity's email address.
+•	Initially, the values for each of these fields will be set to random values for testing and visual display purposes.
+•	The system will automatically generate a new Box whenever a new employee is added. The Box will display the details (name, experience, contact) of the newly hired employee.
+•	If the list is being displayed on the Employee page, when a new employee joins the organization, the system will dynamically create a Box representing the new employee and display it on the page, populating it with their data.
+•	Each Box will contain two buttons: Edit Details button that will allow the user to modify the displayed details of the entity. Clicking this will open a form where changes can be made to the fields and View Details button which will display a detailed view of the entity, showing more comprehensive information or providing further actions (like contacting the person, viewing full history, etc.).
+ 
+ 
+5. GUI Standards and Design Guidelines
+•	The interface will adhere to a consistent color scheme. Primary actions (e.g., "Log In", "Finish") will use blue or green, secondary actions (e.g., "Cancel", "Return") will use neutral gray, and error messages will be highlighted in red.
+•	The system will use a modern sans-serif font (e.g., Arial or Helvetica) to ensure readability, with larger fonts for headings and subheadings and smaller fonts for body text.
+6. Error Message Display Standards
+•	Error messages will be concise and informative, displayed in red, with specific instructions on how to resolve the issue (e.g., "Please fill in this field", "Invalid login credentials").
+•	The system will perform real-time validation during user input, showing error messages immediately after an invalid action is performed.
+•	Fields containing errors will be highlighted in red, and the related error message will be displayed next to the field to ensure the user is aware of the issue.
+7. Keyboard Shortcuts
+The OMS will support common keyboard shortcuts to improve user experience and efficiency:
+•	Ctrl + S: Save
+•	Ctrl + Z: Undo
+•	Ctrl + F: Open search
+•	Esc: Close modal windows
+3.2	Hardware Interfaces
+Device Types Supported
+The software product is designed to work with a variety of hardware components typically used in office environments. These may include:
+•	Personal Computers (Desktops and Laptops): These devices will run the application on a local machine or via a network.
+•	Touchscreen Devices (Optional): For more interactive access, such as on tablets or kiosks, the software can support touch-based interactions for input and navigation.
+•	Printers (Optional): For printing reports, logs, or user-specific documents (like employee or client data).
+•	Webcams/Scanners (Optional): These devices could be used for scanning documents or for any other input like profile pictures if implemented in future versions.
+Nature of Data and Control Interactions
+•	User Input: Users will interact with the software via a graphical user interface (GUI). Input will be via:
+o	Text Fields: For entering usernames, passwords, or any other textual data.
+o	Buttons: For actions like submitting, logging in, signing up, etc.
+o	Drop-down menus/Combo boxes: For selecting predefined options (e.g., departments, projects).
+o	File Selection: For uploading documents, images, or logos.
+•	Data Storage and Access:
+o	Local File System: The software interacts with local files (such as accounts.txt) for reading and writing user data (account creation, login validation).
+o	Database (Optional): For larger applications, the data may be stored in a database, accessed via SQL queries for CRUD operations. In this case, the software would interface with the database using standard SQL protocols.
+Communication Protocols
+•	USB and Bluetooth: For interaction with peripheral devices like printers and barcode scanners.
+•	Wi-Fi/Ethernet: For communication between client devices and the central server, especially in multi-user environments.
+•	HTTP/HTTPS: Used for secure communication between client devices and the server over the internet.
+•	RESTful APIs: For integration with third-party applications or services.
+Security Considerations
+•	Data Encryption: SSL/TLS encryption for secure data transmission.
+•	Authentication: Two-factor authentication (2FA) and role-based access control (RBAC) for secure access.
+3.3	Software Interfaces
+Connections to Specific Software Components
+The DBMS to be utilized in OMS should be MySQL 8.0 or higher to store all system data, including user information, employee records, project details, and audit logs. The interaction to specific software components would include incoming date like user inputs such as employee details, project updates, and organizational data and outgoing data like query results for reports, dashboards, and user-specific views.
+The OS utilized should be windows 10 or higher, Ubuntu 20.04 or higher, and macOS Catalina or higher to provides the runtime environment for the OMS application, ensuring compatibility and security.
+The languages to be used should be Java 11 or C++ for backend logic and API development, and libraries to be used should be spring Framework (Java-based projects) for RESTful API development and dependency injection, and JSON libraries for data exchange between the client and server to implements core business logic, APIs, and user interface functionalities.
+The web server software to be used should be Apache Tomcat (for Java) or Nginx to host the application for web-based access, handling HTTP/HTTPS requests from users.
+Client-Side Tools should include Modern web browsers (e.g., Chrome, Firefox) for GUI access to allow users to interact with the system via a user-friendly interface.
+
+Data Items and Messages
+This includes Incoming Data Items like User Authentication Details, data for creating, updating, or deleting records related to employees, projects, and departments, and user-specified filters or keywords for searching and reporting, and outgoing Data Items like User-Specific Data, reports, error or success messages.
+
+Communication Services and Protocols
+The required services include validation of user credentials; handling of requests to retrieve, filter, and display data from the database; and notifications to users regarding system events or updates (e.g., project deadlines).
+The protocols used include HTTP/HTTPS to ensure secure communication between client devices and the server and RESTful APIs to Facilitates interaction between the OMS frontend and backend for data retrieval and operations.
+
+Shared Data Across Software Components
+In a multitasking environment, shared data (e.g., user sessions, audit logs) will be accessed using secure, synchronized mechanisms to avoid data inconsistencies, and session data will be managed using server-side storage to prevent conflicts in a multi-user environment.
+User Information is shared between authentication services and user management modules, project data is accessed by reporting tools, dashboards, and department modules for cross-functional operations, and audit logs are maintained globally to track user actions, ensuring system accountability.
+
+Application Programming Interface (API) Protocols
+REST API Endpoints like authentication, data management, and reporting enable integration with third-party tools or extensions while maintaining a consistent interface for internal modules.
+3.4	Communications Interfaces
+The product requires reliable communication functions to facilitate clear and accurate data exchange between components and external systems. Web-based communications will use standard protocols such as HTTP to ensure secure and efficient interactions. The system should support compatibility with modern web browsers for user accessibility and provide features like real-time updates via APIs. Electronic forms used in the application will follow standardized message formats, such as JSON or XML, for interoperability with third-party systems. Additionally, email notifications must be integrated to notify users of important updates, such as account changes or system alerts, using SMTP with encryption protocols like TLS for secure delivery.
+To maintain security and privacy, all communication channels must employ encryption to protect sensitive data during transmission, including passwords and personal information. The system will require robust synchronization mechanisms to ensure consistency in multi-user operations and real-time collaboration. Data transfer rates should be optimized for both local and remote access, ensuring minimal latency even under high loads. Communication standards like FTP or SFTP may be employed for secure file transfers between the system and external entities, adhering to industry best practices for authentication and data integrity.
+4.	System Features
+This section describes the major features provided by the Office Management System (OMS), including their purpose, priority, user interactions, and functional requirements. The features are organized for clarity, focusing on core services to streamline business operations.
+
+4.1. User Authentication and Role-Based Access Control
+4.1.1. Description and Priority
+This feature ensures secure user access to the system by verifying login credentials and enforcing role-based access control (RBAC) for various user types, such as CEOs, Managers, Employees, and Administrators.
+•	Priority: High
+•	Component Ratings:
+o	Benefit: 9 (Critical for securing sensitive data).
+o	Penalty: 10 (System cannot function without secure authentication).
+o	Cost: 5 (Moderate implementation cost).
+o	Risk: 7 (Potential risk from breaches or credential leaks).
+4.1.2. Stimulus/Response Sequences
+1.	User Action: A user enters their username and password on the login screen and presses the "Log In" button.
+System Response: Validates the credentials against stored data in the database. If valid, redirects the user to their role-specific dashboard. If invalid, displays an error message: "Invalid credentials. Please try again."
+2.	User Action: A user attempts to access a restricted feature (e.g., a Manager trying to access CEO functions).
+System Response: Denies access and displays an error: "Access denied. Insufficient permissions."
+4.1.3. Functional Requirements
+•	REQ-1: The system must authenticate users based on their username and password, ensuring encrypted data storage and transmission.
+•	REQ-2: Implement role-based access control to restrict functionality based on user roles (e.g., CEO, Manager, Employee).
+•	REQ-3: Provide error messages for invalid credentials or unauthorized access attempts.
+•	REQ-4: Log all authentication attempts for security audits, including successful and failed logins.
+
+4.2. Employee Management
+4.2.1. Description and Priority
+This feature allows administrators and managers to manage employee records, including creating, updating, and deleting employee profiles. It also supports viewing and filtering employee data for performance monitoring.
+•	Priority: High
+•	Component Ratings:
+o	Benefit: 8 (Essential for efficient workforce management).
+o	Penalty: 6 (Reduced efficiency without this functionality).
+o	Cost: 4 (Low to moderate implementation effort).
+o	Risk: 5 (Medium risk of data inconsistency).
+4.2.2. Stimulus/Response Sequences
+1.	User Action: An admin enters a new employee’s details and presses "Save."
+System Response: Validates input fields (e.g., ensuring no duplicate employee ID) and saves the record to the database. Displays a success message: "Employee added successfully."
+2.	User Action: A manager searches for an employee by name in the search bar.
+System Response: Filters and displays matching records in real time.
+4.2.3. Functional Requirements
+•	REQ-1: Enable CRUD (Create, Read, Update, Delete) operations for employee records.
+•	REQ-2: Validate input fields to prevent duplicate or incorrect data entries (e.g., duplicate IDs).
+•	REQ-3: Allow filtering and searching of employee records based on attributes such as name, department, or role.
+•	REQ-4: Provide error messages for invalid inputs (e.g., "Employee ID already exists") and success notifications for completed actions.
+
+4.3. Project Management
+4.3.1. Description and Priority
+This feature enables users to manage projects, including creating, assigning, and tracking project progress. It also supports assigning employees and monitoring deadlines.
+•	Priority: High
+•	Component Ratings:
+o	Benefit: 9 (Crucial for tracking organizational projects).
+o	Penalty: 7 (Project oversight will be inefficient without it).
+o	Cost: 6 (Moderate development cost due to complexity).
+o	Risk: 6 (Risk of data inaccuracies if poorly implemented).
+4.3.2. Stimulus/Response Sequences
+1.	User Action: A manager assigns an employee to an existing project and saves changes.
+System Response: Updates the project record and notifies the employee of their new assignment.
+2.	User Action: A user views a project’s status on their dashboard.
+System Response: Displays key metrics, such as percentage completed, assigned team, and deadline.
+4.3.3. Functional Requirements
+•	REQ-1: Support CRUD operations for project records.
+•	REQ-2: Allow assigning employees to projects and tracking their contributions.
+•	REQ-3: Display real-time progress metrics for active projects on user dashboards.
+•	REQ-4: Send notifications or reminders for approaching deadlines.
+
+4.4. Audit Logging and History Tracking
+4.4.1. Description and Priority
+This feature tracks all user actions within the system to ensure accountability and provide a clear audit trail for security and compliance purposes.
+•	Priority: Medium
+•	Component Ratings:
+o	Benefit: 7 (Improves security and accountability).
+o	Penalty: 5 (Minor impact if not implemented initially).
+o	Cost: 4 (Low implementation cost).
+o	Risk: 5 (Risk of performance degradation if logging is excessive).
+4.4.2. Stimulus/Response Sequences
+1.	User Action: A user edits an employee record and presses "Save."
+System Response: Logs the action, including the user ID, timestamp, and changes made.
+2.	User Action: An admin views the audit trail for a specific period.
+System Response: Displays all logged actions filtered by the specified time range.
+4.4.3. Functional Requirements
+•	REQ-1: Log all user actions, including CRUD operations and login attempts, with timestamps.
+•	REQ-2: Allow authorized users to filter and view audit logs based on criteria (e.g., date range, user).
+•	REQ-3: Ensure audit logs are tamper-proof and securely stored.
+
+These features ensure that OMS meets the functional needs of its users while maintaining security, accountability, and operational efficiency. Additional features may be detailed as required to address future use cases or business needs.
+5.	Other Nonfunctional Requirements
+5.1	Performance Requirements
+	The System should be able to take in a MINIMUM of 100 concurrent users without degrading performance. This ensures that the company is scalable with its future growth and efficient in operations during peak times.
+	It should not take more than 3 seconds for a user to log in under typical circumstances, to maintain a good experience for users.
+	Retrieval of data from the database (fetching employee or project information, etc) should occur under 2 seconds for 95% of requests, at minimum, which allows timely access to critical data.
+	The system should provide real-time updates on the changed system details; maximum latency should be 5 seconds.
+	Generation of reports should not last more than 10 seconds such as history logs, audit reports, etc. as it would create unnecessary hassle on the managers and admins to access important data.
+5.2	Safety Requirements
+• The system must include encryption for sensitive user data, such as passwords and personal information, especially in transit to prevent unauthorized access and prevent data breaches.
+• Automatic backups of critical data (e.g., employee records, project details, history logs) should be performed daily to prevent data loss due to system failures or other unforeseen events.
+• User roles and permissions must be strictly enforced to prevent unauthorized access to sensitive data. Only authorized personnel (e.g., admins, managers) should have access to modify or delete critical records.
+• The system must comply with relevant data protection regulations, such as GDPR or CCPA, to ensure user privacy and prevent legal complications. Safeguards must be implemented to avoid accidental exposure of personal or financial information.
+• A logging mechanism should follow and document all actions that affect data integrity (e.g., account creation, data deletion) to provide an audit trail, ensuring accountability and enabling the recovery of any critical errors.
+5.3	Security Requirements
+Data Encryption: All sensitive user data, including passwords, personal information, and transaction details, must be encrypted both at rest and in transit. This ensures protection from unauthorized access and data breaches during data exchanges over networks.
+Authentication and Authorization: The system must include strong user identity authentication mechanisms, such as multi-factor-verification for access to sensitive areas of the system. User roles and permissions should be enforced to ensure that only authorized individuals can access or modify critical data, such as employee records and financial information.
+Compliance with Regulations: The System must follow certain relevant Data protection regulations, including GDPR, CCPA, and HIPAA, where applicable. These regulations ensure that user privacy is maintained and personal data is processed within International and National standards.
+Data Integrity and Audit Trail: The system must implement logging and auditing mechanisms to track all significant actions affecting user data. This includes creating, modifying, or deleting records. Audit trails will ensure accountability, facilitate data recovery in case of errors, and help in compliance with data protection regulations.
+Privacy: The system should be designed with all relevant privacy considerations from the outset, ensuring that personal data is processed in a way that minimizes exposure to unauthorized parties.
+
+5.4	Software Quality Attributes
+Usability: The system should be user-friendly, ensuring that users can easily navigate through its functionalities with minimal training. This includes providing clear labels, tooltips, and error messages. The system should enable User to use 85% of the program Functions within 20 hours of using Program, measured via surveys or user feedback.
+Reliability: The system must exhibit high reliability, with an uptime of 99% during regular operations. This includes minimizing system crashes, errors, and disruptions. Failures or unplanned downtime should not exceed 1 hour per month.
+Maintainability: The codebase must be well documented and modular to ensure that it is easy for developers to update, fix bugs, or extend the system's functionality. The system should be able to accommodate updates or patches with minimal downtime (less than 30 minutes).
+Adaptability: The system should be easily adaptable to future changes, such as the addition of new roles, departments, or reporting features. Configuration changes should require minimal effort and should not impact the system's performance or stability.
+Scalability: The system should be capable of scaling to accommodate increased data volume, user traffic, and system load. The system should handle a user base of up to 10,000 concurrent users without significant performance degradation.
+5.5	Business Rules
+1.	User Role Assignment:
+o	Only Admin users can assign or modify roles (e.g., Admin, Manager, Employee) for other users within the system.
+o	Managers can assign roles to employees within their department but cannot assign higher-level roles (e.g., Admin).
+2.	Data Modification and Access Control:
+o	Admin users have unrestricted access to modify all data across the system, including employee records, project details, department information, and client records.
+o	Manager users can modify data related to employees and projects under their supervision but cannot modify system configurations or other managers' data.
+o	Employee users can only view and modify their own personal data, such as contact details, and cannot access other employees' records.
+o	Guest users have read-only access to non-sensitive data such as project overviews, branch information, and general company policies.
+3.	Data Security and Privacy Compliance:
+o	Sensitive information (e.g., passwords, personal details, financial records) is accessible only to users with Admin or Manager roles.
+o	All data containing personal or financial information must be encrypted during transit and at rest.
+o	Admin users are responsible for ensuring the system complies with applicable privacy regulations such as GDPR or CCPA, ensuring that sensitive data is properly stored and protected.
+4.	Audit Logging:
+o	Every action performed on sensitive data (e.g., data updates, deletions) must be logged with user identification and timestamp.
+o	Only Admin users can access audit logs and generate reports related to user activities, while other roles can only view logs related to their own actions.
+o	Any unauthorized access or attempted data tampering will be flagged and reported to Admin for further investigation.
+6.	Other Requirements
+Database Requirements:
+•	The relational database management system (RDBMS) used by the system should be MySQL 8.0 or a higher version.
+•	Referential integrity constraints (e.g. primary keys, unique constraints, etc.) should be carefully used to ensure data accuracy.
+•	Data should be backed up daily to avoid data loss.
+Internationalization Requirements:
+•	For the system to be used globally, the multiple languages should be supported for the user interface.
+•	The date, time, and currency formats should also be in accordance with the user’s vicinity.
+Legal Requirements:
+•	The system must comply with data privacy laws like GDPR.
+Reuse Objectives:
+•	Code modules for authentication, database interaction, and reporting should be designed to be reusable across similar projects.
+Scalability and Performance:
+•	The system must be designed to support up to 10,000 concurrent users without any disruption in the system.
+•	Resolving the database queries should not take more than 2 seconds for 95% of operations.
+Appendix A: Glossary
+Term	Definition
+API	It stands for Application Programming Interface i.e. a set of functions that allow software applications to interact.
+CRUD	It stands for Create, Read, Update, Delete - fundamental database operations.
+GUI	It stands for Graphical User Interface i.e. a user interface allowing interaction through graphical elements.
+GDPR	It stands for General Data Protection Regulation, which is a European Union data protection law.
+CCPA	It stands for California Consumer Privacy Act, which is a privacy law in California, USA.
+RBAC	It stands for Role-Based Access Control which means access permissions based on user roles.
+Appendix B: Analysis Models
+Data Flow Diagram (DFD)
+ 
+Entity Relationship Diagram (ERD)
+ 
+
+
+
+
+
+
+
+
+Object Class Diagram
+ 
+
+
+
+
+
+
+
+
+Use Case Diagrams
+ 
+ 
+Appendix C: To Be Determined List
+1.	Specific APIs for integrating financial and HR systems are yet to be determined.
+2.	Final load testing is pending to determine the system's scalability limits.
+3.	Compliance with GDPR and CCPA is also pending.
